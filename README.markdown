@@ -16,7 +16,7 @@ Benefits
 
 * Ruby 1.8.6 (tested on 1.9.2)
 * Vim 7.2 or higher
-* GNU grep 2.6.3 or higher
+* GNU grep 2.6.3 or higher (check your version with `grep -V`)
 
 ## Install
 

@@ -48,9 +48,6 @@ For the all the commands below, the mapleader is assumed to be `,`. If it is
 To change these keymappings, edit the two lines at the end of
 `~/.vim/plugin/rb_nav.vim`.
 
-Use the standard Vim autocompletion commands to move up and down the match
-list.
-
 * `CTRL-p` and `CTRL-n` let you navigate the drop-down matches. Press `ENTER` to select
 one.
 * `<TAB><ENTER>` selects an item

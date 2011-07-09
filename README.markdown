@@ -45,7 +45,7 @@ For the all the commands below, the mapleader is assumed to be `,`. If it is
 * `,N` navigate the classes and modules in your project
 * `,n` navigating the methods in the current file
 
-To change these keymappings, edit the two `nnoremap` lines at the end of
+To change these keymappings, edit the two lines at the end of
 `~/.vim/plugin/rb_nav.vim`.
 
 Use the standard Vim autocompletion commands to move up and down the match
@@ -53,12 +53,15 @@ list.
 
 * `CTRL-p` and `CTRL-n` let you navigate the drop-down matches. Press `ENTER` to select
 one.
+* `<TAB><ENTER>` selects an item
 * `CTRL-e` closes the match list and lets you continue typing
 * `CTRL-u`: when the match list is active, cycles forward through the match
   list and what you've typed so far; when the match list is inactive, erases
   what you've typed.
 * both `TAB` and `CTRL-x CTRL-u` reactivates autocompletion if it's gone away
 * `CTRL-y` selects the highlighted match without triggering ENTER
+
+
 
 
 ### The search path

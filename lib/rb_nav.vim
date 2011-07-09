@@ -103,7 +103,7 @@ function! AutocompleteRbNavMethods(findstart, base)
 endfun
 
 func! RbNavMethods()
-  let command = "grep -rn '^\\s*\\def ' ".s:current_file." | rb_nav_methods "
+  let command = "grep -n '^\\s*def ' ".s:current_file." | rb_nav_methods "
   echom command
   let res = system(command)
   return split(res, "\n")

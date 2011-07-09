@@ -2,7 +2,8 @@
 " Maintainer:	Daniel Choi <dhchoi@gmail.com>
 " License: MIT License (c) 2011 Daniel Choi
 
-let g:RbNavPaths="app lib"
+let g:RbNavPaths = "app lib"
+let s:last_class_search = ""
 
 func! RbNavClasses()
 endfunc
@@ -32,11 +33,11 @@ endfunc
 
 function! s:autocomplete_classes()
   call s:prepare_autocomplete()
-  inoremap <buffer> <cr> <Esc>:call <SID>open_file()<cr>
-  noremap <buffer> <cr> <Esc>:call <SID>open_file()<cr>
+  inoremap <buffer> <cr> <Esc>:call <SID>open_class_file()<cr>
+  noremap <buffer> <cr> <Esc>:call <SID>open_class_file()<cr>
   setlocal completefunc=AutocompleteRbNavClasses
   call setline(1, "Select a class or module: ")
-  call setline(2, "")
+  call setline(2, s:last_class_search)
   normal G$
   call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
 endfunction
@@ -99,17 +100,19 @@ func! RbNavMethods()
   return split(res, "\n")
 endfunc
 
-func! s:open_file()
+func! s:open_class_file()
   if (getline(2) =~ '^\s*$')
     close
     return
   endif
   let selection = s:trimString(getline(2))
   close
+  let query = get(split(selection, '\s\+'), 0)
   let location = get(split(selection, '\s\+'), -1)
   let path = get(split(location, ':'), 0)
   let line = get(split(location, ':'), 1)
   if filereadable(path)
+    let s:last_class_search = query
     exec 'edit '.path
     exec "normal ".line."G"
     call feedkeys("z\<cr>", "t")

@@ -1,0 +1,17 @@
+#/usr/bin/env ruby
+#grep -rn  '^\s*\def ' $1 | ruby nav/methods.rb  
+
+xs = STDIN.readlines.
+  map {|x| 
+    line, method = *x.strip.split(/:/) 
+    method = method.strip
+    [method, line]
+  }
+
+max_width = xs.reduce(0) { |max, x| [x[0].length, max].max }
+
+xs.each do |x|
+  method, line = *x
+  puts "%-#{max_width}s %s" % [method, line]
+end
+

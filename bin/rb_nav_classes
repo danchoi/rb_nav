@@ -1,0 +1,20 @@
+#/usr/bin/env ruby
+#
+# Use this pipe
+# grep -rn  '^\s*\(class\|module\) ' app lib | ruby nav/nav.rb  
+
+xs = STDIN.readlines.
+  map {|x| 
+    parts = x.strip.split(/:/,3)
+    path, line, klass = *parts
+    klass = klass.strip.sub(/^\w+\s/,'')
+    [klass, [path, line].join(':')] 
+  }.select {|x| x[0] !~ /<<\s*self/}
+
+max_width = xs.reduce(0) { |max, x| [x[0].length, max].max }
+
+xs.each do |x|
+  klass, path = *x
+  puts "%-#{max_width}s %s" % [klass, path]
+end
+#

@@ -142,5 +142,5 @@ func! s:jump_to_method()
   call feedkeys("z\<cr>", "t")
 endfunc
 
-au BufRead,BufNewFile *.rb nnoremap <Leader>N :call <SID>autocomplete_classes()<cr>
-au BufRead,BufNewFile *.rb nnoremap <Leader>n :call <SID>autocomplete_methods()<cr>
+nnoremap <Leader>N :call <SID>autocomplete_classes()<cr>
+nnoremap <Leader>n :call <SID>autocomplete_methods()<cr>

@@ -24,7 +24,6 @@ endfunc
 
 func! s:prepare_autocomplete()
   let s:current_file = bufname('')
-  let s:orig_bufnr = bufnr('')
   leftabove split rb_nav_prompt
   setlocal textwidth=0
   setlocal buftype=nofile
@@ -112,12 +111,10 @@ endfunc
 func! s:open_class_file()
   if (getline(2) =~ '^\s*$')
     close
-    exe winbufnr(s:orig_bufnr)."wincmd w"
     return
   endif
   let selection = s:trimString(getline(2))
   close
-  exe winbufnr(s:orig_bufnr)."wincmd w"
   if len(split(selection, '\s\+')) == 1
     " user pressed return without autocompleting, so find the first match
     for x in s:selection_list
@@ -160,7 +157,6 @@ func! s:jump_to_method()
   call feedkeys("z\<cr>", "t")
 endfunc
 
-autocmd BufEnter,BufRead *.rb let s:orig_bufnr = bufnr('')
 
 nnoremap <Leader>n :call <SID>autocomplete_classes()<cr>
 nnoremap <Leader>N :call <SID>autocomplete_methods()<cr>

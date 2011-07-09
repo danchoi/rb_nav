@@ -1,4 +1,6 @@
-#/usr/bin/env ruby
+#!/usr/bin/env ruby
+
+# Use this pipe
 #grep -rn  '^\s*\def ' $1 | ruby nav/methods.rb  
 
 xs = STDIN.readlines.

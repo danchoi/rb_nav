@@ -1,5 +1,5 @@
-#/usr/bin/env ruby
-#
+#!/usr/bin/env ruby
+
 # Use this pipe
 # grep -rn  '^\s*\(class\|module\) ' app lib | ruby nav/nav.rb  
 
@@ -17,4 +17,5 @@ xs.each do |x|
   klass, path = *x
   puts "%-#{max_width}s %s" % [klass, path]
 end
-#
+
+

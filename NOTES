@@ -7,5 +7,4 @@ nav/nav.sh
 TODO
 - function to show everywhere a class or method is called in the code
   - autocomplete
-
-awdawd
+- look for constants too ^\s*[A-Z]\w+\s*=\s*\S

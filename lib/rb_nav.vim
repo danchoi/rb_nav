@@ -2,7 +2,17 @@
 " Maintainer:	Daniel Choi <dhchoi@gmail.com>
 " License: MIT License (c) 2011 Daniel Choi
 
-let g:RbNavPaths = "app lib"
+" This can be set in .vimrc
+if !exists("g:RbNavPaths")
+  let g:RbNavPaths = ""
+  for x in ['app', 'lib', 'test']
+    if isdirectory(x)
+      let g:RbNavPaths .= x.' '
+    endif
+  endfor
+endif
+echom g:RbNavPaths
+
 let s:last_class_search = ""
 
 func! RbNavClasses()
@@ -59,7 +69,7 @@ function! AutocompleteRbNavClasses(findstart, base)
 endfun
 
 func! RbNavClasses()
-  let command = "grep -rn  '^\s*\\(class\\|module\\) ' ".g:RbNavPaths." | rb_nav_classes | sort"
+  let command = "grep -rn ".g:RbNavPaths." --include='*.rb' -e '^\\s*\\(class\\|module\\) \\+[A-Z]'  | rb_nav_classes | sort"
   let res = system(command)
   return split(res, "\n")
 endfunc

@@ -57,7 +57,7 @@ function! AutocompleteRbNavClasses(findstart, base)
     let s:selection_list = RbNavClasses()
     for m in s:selection_list
       " why doesn't case insensitive flag work?
-      if m =~ substitute(a:base, '\*', '\\*', '')
+      if m =~ '\c'.substitute(a:base, '\*', '\\*', '')
         call add(res, m)
       endif
     endfor
@@ -117,7 +117,7 @@ func! s:open_class_file()
   if len(split(selection, '\s\+')) == 1
     " user pressed return without autocompleting, so find the first match
     for x in s:selection_list
-      if get(split(x, '\s\+'), 0) == selection
+      if tolower(get(split(x, '\s\+'), 0)) == tolower(selection)
         let selection = x
       endif
     endfor

@@ -2,15 +2,9 @@
 " Maintainer:	Daniel Choi <dhchoi@gmail.com>
 " License: MIT License (c) 2011 Daniel Choi
 
-" This can be set in .vimrc
-if !exists("g:RbNavPaths")
-  let g:RbNavPaths = ""
-  for x in ['.']
-    if isdirectory(x)
-      let g:RbNavPaths .= x.' '
-    endif
-  endfor
-endif
+" This can be overridden in .vimrc
+
+let g:RbNavPaths = " . --exclude-dir='\.git' --exclude-dir='vendor' --exclude-dir='db' --include='*.rb' "
 
 let s:last_class_search = ""
 
@@ -68,7 +62,7 @@ function! AutocompleteRbNavClasses(findstart, base)
 endfun
 
 func! RbNavClasses()
-  let command = "grep -rn ".g:RbNavPaths." --exclude='.git/*' --include='*.rb' -e '^\\s*\\(class\\|module\\) \\+[A-Z]'  | rb_nav_classes | sort"
+  let command = "grep -rn ".g:RbNavPaths." -e '^\\s*\\(class\\|module\\) \\+[A-Z]'  | rb_nav_classes | sort"
   let res = system(command)
   return split(res, "\n")
 endfunc

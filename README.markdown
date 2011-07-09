@@ -48,8 +48,7 @@ For the all the commands below, the mapleader is assumed to be `,`. If it is
 To change these keymappings, edit the two lines at the end of
 `~/.vim/plugin/rb_nav.vim`.
 
-* `CTRL-p` and `CTRL-n` let you navigate the drop-down matches. Press `ENTER` to select
-one.
+* `CTRL-p` and `CTRL-n` let you navigate the drop-down matches
 * `<TAB><ENTER>` selects an item
 * `CTRL-e` closes the match list and lets you continue typing
 * `CTRL-u`: when the match list is active, cycles forward through the match

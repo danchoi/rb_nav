@@ -68,7 +68,7 @@ function! AutocompleteRbNavClasses(findstart, base)
 endfun
 
 func! RbNavClasses()
-  let command = "grep -rn ".g:RbNavPaths." --exclude-dir=.git --include='*.rb' -e '^\\s*\\(class\\|module\\) \\+[A-Z]'  | rb_nav_classes | sort"
+  let command = "grep -rn ".g:RbNavPaths." --exclude='.git/*' --include='*.rb' -e '^\\s*\\(class\\|module\\) \\+[A-Z]'  | rb_nav_classes | sort"
   let res = system(command)
   return split(res, "\n")
 endfunc

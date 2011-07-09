@@ -39,13 +39,14 @@ endfunc
 
 function! s:autocomplete_classes()
   call s:prepare_autocomplete()
-  call feedkeys("\<c-w>K:resize 2\<cr>", 't')
+  resize 2
   inoremap <buffer> <cr> <Esc>:call <SID>open_class_file()<cr>
   noremap <buffer> <cr> <Esc>:call <SID>open_class_file()<cr>
   setlocal completefunc=AutocompleteRbNavClasses
-  gg
   call setline(1, "Select a class or module: ")
-  call feedkeys("o\<c-x>\<c-u>\<c-p>", 't')
+  call setline(2, "")
+  normal G$
+  call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
 endfunction
 
 function! AutocompleteRbNavClasses(findstart, base)

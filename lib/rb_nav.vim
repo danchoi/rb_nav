@@ -159,5 +159,5 @@ func! s:jump_to_method()
   call feedkeys("z\<cr>", "t")
 endfunc
 
-nnoremap <Leader>N :call <SID>autocomplete_classes()<cr>
-nnoremap <Leader>n :call <SID>autocomplete_methods()<cr>
+nnoremap <Leader>n :call <SID>autocomplete_classes()<cr>
+nnoremap <Leader>N :call <SID>autocomplete_methods()<cr>

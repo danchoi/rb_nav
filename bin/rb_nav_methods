@@ -6,7 +6,7 @@
 xs = STDIN.readlines.
   map {|x| 
     line, method = *x.strip.split(/:/) 
-    method = method.strip
+    method = method.strip.sub(/^\s*def\s*/, '')
     [method, line]
   }
 

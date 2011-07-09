@@ -7,6 +7,7 @@
 let g:RbNavPaths = " . --exclude-dir='\.git' --exclude-dir='vendor' --exclude-dir='db' --include='*.rb' "
 
 let s:last_class_search = ""
+let s:selection_list = []
 
 func! RbNavClasses()
 endfunc
@@ -51,7 +52,8 @@ function! AutocompleteRbNavClasses(findstart, base)
     return start
   else
     let res = [] 
-    for m in RbNavClasses()
+    let s:selection_list = RbNavClasses()
+    for m in s:selection_list
       " why doesn't case insensitive flag work?
       if m =~ substitute(a:base, '\*', '\\*', '')
         call add(res, m)
@@ -86,8 +88,8 @@ function! AutocompleteRbNavMethods(findstart, base)
     return start
   else
     let res = [] 
-    for m in RbNavMethods()
-      " why doesn't case insensitive flag work?
+    let s:selection_list = RbNavMethods()
+    for m in s:selection_list 
       if m =~ '^\c.\?' . substitute(a:base, '\*', '\\*', '')
         call add(res, m)
       endif
@@ -110,6 +112,14 @@ func! s:open_class_file()
   endif
   let selection = s:trimString(getline(2))
   close
+  if len(split(selection, '\s\+')) == 1
+    " user pressed return without autocompleting, so find the first match
+    for x in s:selection_list
+      if get(split(x, '\s\+'), 0) == selection
+        let selection = x
+      endif
+    endfor
+  endif
   let query = get(split(selection, '\s\+'), 0)
   let location = get(split(selection, '\s\+'), -1)
   let path = get(split(location, ':'), 0)
@@ -131,6 +141,14 @@ func! s:jump_to_method()
   endif
   let selection = s:trimString(getline(2))
   close
+  if len(split(selection, '\s\+')) == 1
+    " user pressed return without autocompleting, so find the first match
+    for x in s:selection_list
+      if get(split(x, '\s\+'), 0) == selection
+        let selection = x
+      endif
+    endfor
+  endif
   let line = get(split(selection, '\s\+'), -1)
   exec 'normal '.line.'G'
   call feedkeys("z\<cr>", "t")

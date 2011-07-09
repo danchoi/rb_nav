@@ -24,6 +24,7 @@ endfunc
 
 func! s:prepare_autocomplete()
   let s:current_file = bufname('')
+  let s:orig_bufnr = bufnr('')
   leftabove split rb_nav_prompt
   setlocal textwidth=0
   setlocal buftype=nofile
@@ -114,6 +115,7 @@ func! s:open_class_file()
   endif
   let selection = s:trimString(getline(2))
   close
+  exe winbufnr(s:orig_bufnr)."wincmd w"
   if len(split(selection, '\s\+')) == 1
     " user pressed return without autocompleting, so find the first match
     for x in s:selection_list

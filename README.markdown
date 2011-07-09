@@ -52,8 +52,7 @@ To change these keymappings, edit the two lines at the end of
 * both `TAB` and `CTRL-x CTRL-u` reactivates autocompletion if it's gone away
 * `CTRL-y` selects the highlighted match without triggering ENTER
 
-
-
+Autocompletion is case-insensitive.
 
 ### The search path
 

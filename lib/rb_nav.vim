@@ -58,7 +58,7 @@ function! AutocompleteRbNavClasses(findstart, base)
     for m in s:selection_list
       " why doesn't case insensitive flag work?
       if m =~ '\c'.substitute(a:base, '\*', '\\*', '')
-        call add(res, m)
+        call add(res, {'word': m, 'icase': 1})
       endif
     endfor
     return res

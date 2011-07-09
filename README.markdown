@@ -5,12 +5,11 @@ modules, and methods in your Ruby project
 
 [screenshots]
 
-Advantages over the venerable `ri` command-line tool:
+Benefits
 
-* write code and browse pertinent documentation in adjacent Vim windows
-* search with autocompletion help
-* hyperlinking lets you jump from definition to definition
-* run back and forth through your jump history with CTRL-o and CTRL-i
+* navigate the classes and modules in your Ruby projects with less typing
+* jump to methods on current page more quickly
+* symbol-centric approach to navigation might suit you better than the file-centric approach
 
 
 ## Prerequisites
@@ -26,7 +25,7 @@ Then
 
     rb_nav_install
 
-This installs the ri.vim plugin into your ~/.vim/plugin directory. 
+This installs the rb_nav.vim plugin into your ~/.vim/plugin directory. 
 
 To upgrade RbNav to a newer version, just repeat the installation procedure.
 Don't forget to run `rb_nav_install` again after you download the new gem.
@@ -39,8 +38,8 @@ For the all the commands below, the mapleader is assumed to be `,`. If it is
 
 ### Invoking the plugin
 
-* `,N` navigating classes and modules
-* `,n` navigating methods in the current file
+* `,N` navigate the classes and modules in your project
+* `,n` navigating the methods in the current file
 
 
 Press `TAB` to start autocompletion.
@@ -56,6 +55,19 @@ one.
   what you've typed.
 * both `TAB` and `CTRL-x CTRL-u` reactivates autocompletion if it's gone away
 * `CTRL-y` selects the highlighted match without triggering ENTER
+
+
+### The search path
+
+By default RbNav looks for `app`, `lib`, and `test` directories in your working
+directory and adds what it finds to the search path.
+
+You can customize the search path by putting something like this in a `.vimrc` 
+files at the root of your project's directory.
+
+    let g:RbNavPaths = "application lib spec"
+
+The directories should be separated by spaces.
 
 
 ## Bug reports and feature requests

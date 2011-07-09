@@ -30,7 +30,6 @@ func! s:prepare_autocomplete()
   setlocal noswapfile
   setlocal modifiable
   setlocal nowrap
-  resize 2
   noremap <buffer> <Esc> :close<cr>
   inoremap <buffer> <Tab> <C-x><C-u>
 endfunc
@@ -39,13 +38,13 @@ endfunc
 
 function! s:autocomplete_classes()
   call s:prepare_autocomplete()
+  call feedkeys("\<c-w>K:resize 2\<cr>", 't')
   inoremap <buffer> <cr> <Esc>:call <SID>open_class_file()<cr>
   noremap <buffer> <cr> <Esc>:call <SID>open_class_file()<cr>
   setlocal completefunc=AutocompleteRbNavClasses
+  gg
   call setline(1, "Select a class or module: ")
-  call setline(2, "") " s:last_class_search)
-  normal G$
-  call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
+  call feedkeys("o\<c-x>\<c-u>\<c-p>", 't')
 endfunction
 
 function! AutocompleteRbNavClasses(findstart, base)
@@ -75,6 +74,7 @@ endfunc
 
 function! s:autocomplete_methods()
   call s:prepare_autocomplete()
+  resize 2
   inoremap <buffer> <cr> <Esc>:call <SID>jump_to_method()<cr>
   noremap <buffer> <cr> <Esc>:call <SID>jump_to_method()<cr>
   setlocal completefunc=AutocompleteRbNavMethods

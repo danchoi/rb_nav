@@ -16,6 +16,7 @@ func! s:trimString(string)
 endfunc
 
 func! s:prepare_autocomplete()
+  let s:current_file = bufname('')
   leftabove split rb_nav_prompt
   setlocal textwidth=0
   setlocal buftype=nofile
@@ -23,16 +24,18 @@ func! s:prepare_autocomplete()
   setlocal modifiable
   setlocal nowrap
   resize 2
-  inoremap <buffer> <cr> <Esc>:call <SID>open_file()<cr>
-  noremap <buffer> <cr> <Esc>:call <SID>open_file()<cr>
   noremap <buffer> <Esc> :close<cr>
   inoremap <buffer> <Tab> <C-x><C-u>
 endfunc
 
+" Classes
+
 function! s:autocomplete_classes()
   call s:prepare_autocomplete()
+  inoremap <buffer> <cr> <Esc>:call <SID>open_file()<cr>
+  noremap <buffer> <cr> <Esc>:call <SID>open_file()<cr>
   setlocal completefunc=AutocompleteRbNavClasses
-  call setline(1, "Select a class or method")
+  call setline(1, "Select a class or module: ")
   call setline(2, "")
   normal G$
   call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
@@ -46,7 +49,7 @@ function! AutocompleteRbNavClasses(findstart, base)
     let res = [] 
     for m in RbNavClasses()
       " why doesn't case insensitive flag work?
-      if m =~ '^\c.\?' . substitute(a:base, '\*', '\\*', '')
+      if m =~ substitute(a:base, '\*', '\\*', '')
         call add(res, m)
       endif
     endfor
@@ -56,6 +59,42 @@ endfun
 
 func! RbNavClasses()
   let command = "grep -rn  '^\s*\\(class\\|module\\) ' ".g:RbNavPaths." | rb_nav_classes | sort"
+  let res = system(command)
+  return split(res, "\n")
+endfunc
+
+" Methods
+
+function! s:autocomplete_methods()
+  call s:prepare_autocomplete()
+  inoremap <buffer> <cr> <Esc>:call <SID>jump_to_method()<cr>
+  noremap <buffer> <cr> <Esc>:call <SID>jump_to_method()<cr>
+  setlocal completefunc=AutocompleteRbNavMethods
+  call setline(1, "Select a method: ")
+  call setline(2, "")
+  normal G$
+  call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
+endfunction
+
+function! AutocompleteRbNavMethods(findstart, base)
+  if a:findstart
+    let start = 0
+    return start
+  else
+    let res = [] 
+    for m in RbNavMethods()
+      " why doesn't case insensitive flag work?
+      if m =~ '^\c.\?' . substitute(a:base, '\*', '\\*', '')
+        call add(res, m)
+      endif
+    endfor
+    return res
+  endif
+endfun
+
+func! RbNavMethods()
+  let command = "grep -rn '^\\s*\\def ' ".s:current_file." | rb_nav_methods "
+  echom command
   let res = system(command)
   return split(res, "\n")
 endfunc
@@ -70,12 +109,30 @@ func! s:open_file()
   let location = get(split(selection, '\s\+'), -1)
   let path = get(split(location, ':'), 0)
   let line = get(split(location, ':'), 1)
-  exec 'edit '.path
-  exec "normal ".line."G"
+  if filereadable(path)
+    exec 'edit '.path
+    exec "normal ".line."G"
+    call feedkeys("z\<cr>", "t")
+  else
+    echo "File ".path." not found"
+  endif
+endfunc
+
+func! s:jump_to_method()
+  if (getline(2) =~ '^\s*$')
+    close
+    return
+  endif
+  let selection = s:trimString(getline(2))
+  close
+  let line = get(split(selection, '\s\+'), -1)
+  exec 'normal '.line.'G'
   call feedkeys("z\<cr>", "t")
 endfunc
 
+
 nnoremap <Leader>e :call <SID>autocomplete_classes()<cr>
+nnoremap <Leader>E :call <SID>autocomplete_methods()<cr>
 
 
 

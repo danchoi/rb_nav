@@ -5,7 +5,7 @@
 " This can be set in .vimrc
 if !exists("g:RbNavPaths")
   let g:RbNavPaths = ""
-  for x in ['app', 'lib', 'test']
+  for x in ['.']
     if isdirectory(x)
       let g:RbNavPaths .= x.' '
     endif
@@ -68,7 +68,7 @@ function! AutocompleteRbNavClasses(findstart, base)
 endfun
 
 func! RbNavClasses()
-  let command = "grep -rn ".g:RbNavPaths." --include='*.rb' -e '^\\s*\\(class\\|module\\) \\+[A-Z]'  | rb_nav_classes | sort"
+  let command = "grep -rn ".g:RbNavPaths." --exclude-dir=.git --include='*.rb' -e '^\\s*\\(class\\|module\\) \\+[A-Z]'  | rb_nav_classes | sort"
   let res = system(command)
   return split(res, "\n")
 endfunc

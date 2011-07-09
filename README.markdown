@@ -59,13 +59,13 @@ one.
 
 ### The search path
 
-By default RbNav looks for `app`, `lib`, and `test` directories in your working
-directory and adds what it finds to the search path.
+By default RbNav looks through all '.rb' files in your working directory and
+its subdirectories. 
 
-You can customize the search path by putting something like this in a `.vimrc` 
+You can restrict the search path by putting something like this in a `.vimrc`
 files in your project's root directory.
 
-    let g:RbNavPaths = "application lib spec"
+    let g:RbNavPaths = "app lib spec"
 
 The directories should be separated by spaces.
 

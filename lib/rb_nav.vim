@@ -86,6 +86,7 @@ function! s:autocomplete_methods()
   call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
 endfunction
 
+autocmd BufEnter,BufRead *.rb let s:orig_bufnr = bufnr('')
 function! AutocompleteRbNavMethods(findstart, base)
   if a:findstart
     let start = 0

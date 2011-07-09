@@ -5,12 +5,15 @@ modules, and methods in your Ruby project
 
 [screenshots]
 
-Benefits
+Benefits:
 
 * navigate the classes and modules in your Ruby projects with less typing
 * jump to methods on current page more quickly
 * symbol-centric approach to navigation might suit you better than the file-centric approach
 
+Please check out my related Vim plugin
+[ri.vim](http://danielchoi.com/software/ri_vim.html) for Ruby
+documentation-browsing features.
 
 ## Prerequisites
 

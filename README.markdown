@@ -59,11 +59,12 @@ one.
 
 ### The search path
 
-By default RbNav looks through all '.rb' files in your working directory and
-its subdirectories. 
+By default RbNav searches files using these `grep` command flags:
 
-You can restrict the search path by putting something like this in a `.vimrc`
-files in your project's root directory.
+    let g:RbNavPaths = " . --exclude-dir='\.git' --exclude-dir='vendor' --exclude-dir='db' --include='*.rb' "
+
+You can override these flags by reassigning `g:RbNavPaths` to something else in
+a `.vimrc` files in your project's root directory.
 
     let g:RbNavPaths = "app lib spec"
 

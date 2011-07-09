@@ -49,7 +49,7 @@ To change these keymappings, edit the two lines at the end of
 `~/.vim/plugin/rb_nav.vim`.
 
 * `CTRL-p` and `CTRL-n` let you navigate the drop-down matches
-* `<TAB><ENTER>` selects an item
+* `<ENTER>` selects an item
 * `CTRL-e` closes the match list and lets you continue typing
 * `CTRL-u`: when the match list is active, cycles forward through the match
   list and what you've typed so far; when the match list is inactive, erases

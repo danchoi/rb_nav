@@ -11,7 +11,6 @@ if !exists("g:RbNavPaths")
     endif
   endfor
 endif
-echom g:RbNavPaths
 
 let s:last_class_search = ""
 
@@ -144,8 +143,8 @@ func! s:jump_to_method()
 endfunc
 
 
-nnoremap <Leader>e :call <SID>autocomplete_classes()<cr>
-nnoremap <Leader>E :call <SID>autocomplete_methods()<cr>
+au BufRead,BufNewFile *.rb nnoremap <Leader>N :call <SID>autocomplete_classes()<cr>
+au BufRead,BufNewFile *.rb nnoremap <Leader>n :call <SID>autocomplete_methods()<cr>
 
 
 

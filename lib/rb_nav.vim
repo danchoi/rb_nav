@@ -111,6 +111,7 @@ endfunc
 func! s:open_class_file()
   if (getline(2) =~ '^\s*$')
     close
+    exe winbufnr(s:orig_bufnr)."wincmd w"
     return
   endif
   let selection = s:trimString(getline(2))

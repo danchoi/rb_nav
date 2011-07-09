@@ -47,7 +47,7 @@ function! s:autocomplete_classes()
   noremap <buffer> <cr> <Esc>:call <SID>open_class_file()<cr>
   setlocal completefunc=AutocompleteRbNavClasses
   call setline(1, "Select a class or module: ")
-  call setline(2, s:last_class_search)
+  call setline(2, "") " s:last_class_search)
   normal G$
   call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
 endfunction

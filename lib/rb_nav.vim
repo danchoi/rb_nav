@@ -4,7 +4,9 @@
 
 " This can be overridden in .vimrc
 
-let g:RbNavPaths = " . --exclude-dir='\.git' --exclude-dir='vendor' --exclude-dir='db' --include='*.rb' "
+if !exists("g:RbNavPaths")
+  let g:RbNavPaths = " . --exclude-dir='\.git' --exclude-dir='vendor' --exclude-dir='db' --include='*.rb' "
+endif
 
 let s:last_class_search = ""
 let s:selection_list = []

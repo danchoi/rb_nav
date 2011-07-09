@@ -1,6 +1,6 @@
 # RbNav
 
-RbNav is a lightweight Vim pluging that helps you navigate the classes,
+RbNav is a lightweight Vim plugin that helps you navigate the classes,
 modules, and methods in your Ruby project 
 
 [screenshots]
@@ -63,7 +63,7 @@ By default RbNav looks for `app`, `lib`, and `test` directories in your working
 directory and adds what it finds to the search path.
 
 You can customize the search path by putting something like this in a `.vimrc` 
-files at the root of your project's directory.
+files in your project's root directory.
 
     let g:RbNavPaths = "application lib spec"
 

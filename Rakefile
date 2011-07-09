@@ -40,7 +40,7 @@ task :build_webpage do
   `cp README.markdown ../project-webpages/src/rb_nav.README.markdown`
   `cp coverage.markdown ../project-webpages/src/rb_nav.coverage.markdown`
   Dir.chdir "../project-webpages" do
-    puts `ruby gen.rb rb_nav #{RIVim::VERSION}`
+    puts `ruby gen.rb rb_nav #{RbNav::VERSION}`
     `open out/rb_nav.html`
   end
 end

@@ -41,6 +41,8 @@ For the all the commands below, the mapleader is assumed to be `,`. If it is
 * `,N` navigate the classes and modules in your project
 * `,n` navigating the methods in the current file
 
+To change these keymappings, edit the two autocommands at the end of
+`~/.vim/plugin/rb_nav.vim`.
 
 Press `TAB` to start autocompletion.
 

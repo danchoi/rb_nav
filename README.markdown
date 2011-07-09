@@ -23,16 +23,11 @@ documentation-browsing features.
 
 ## Install
 
-    gem install rb_nav
-
-Then
-
-    rb_nav_install
+    gem install rb_nav && rb_nav_install
 
 This installs the rb_nav.vim plugin into your ~/.vim/plugin directory. 
 
 To upgrade RbNav to a newer version, just repeat the installation procedure.
-Don't forget to run `rb_nav_install` again after you download the new gem.
 
 
 ## Commands

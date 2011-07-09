@@ -1,10 +1,4 @@
 #!/usr/bin/env ruby
-begin
-  require 'install'
-rescue LoadError
-  require 'rubygems'
-  require 'install'
-end
 
 `mkdir -p #{ENV['HOME']}/.vim/plugin`
 vimscript_file = File.join(File.dirname(__FILE__), '..', 'lib/rb_nav.vim')

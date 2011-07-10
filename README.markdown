@@ -35,6 +35,7 @@ To upgrade RbNav to a newer version, just repeat the installation procedure.
 For the all the commands below, the mapleader is assumed to be `,`. If it is
 `\` or something else for your setup, use that instead.
 
+
 ### Invoking the plugin
 
 * `,n` navigate the classes and modules in your project
@@ -52,7 +53,12 @@ To change these keymappings, edit the two lines at the end of
 * both `TAB` and `CTRL-x CTRL-u` reactivates autocompletion if it's gone away
 * `CTRL-y` selects the highlighted match without triggering ENTER
 
-Autocompletion is case-insensitive.
+Autocompletion is case-insensitive. 
+
+You can also match a fragment. So if you want to get to `UsersController`, you
+can type `usersc` and hit ENTER. This should be sufficient to bring up
+`UsersController` as long as that is the top match for the fragment `usersc`.
+
 
 ### The search path
 

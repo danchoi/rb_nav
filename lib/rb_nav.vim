@@ -5,7 +5,7 @@
 " This can be overridden in .vimrc
 
 if !exists("g:RbNavPaths")
-  let g:RbNavPaths = " . --exclude-dir='\.git' --exclude-dir='vendor' --exclude-dir='db' --include='*.rb' "
+  let g:RbNavPaths = " . --exclude-dir='\.git' --exclude-dir='vendor' --exclude-dir='db/migrate' --include='*.rb' "
 endif
 
 let s:last_class_search = ""
@@ -118,7 +118,7 @@ func! s:open_class_file()
   if len(split(selection, '\s\+')) == 1
     " user pressed return without autocompleting, so find the first match
     for x in s:selection_list
-      if tolower(get(split(x, '\s\+'), 0)) == tolower(selection)
+      if tolower(get(split(x, '\s\+'), 0)) =~ tolower(selection)
         let selection = x
       endif
     endfor

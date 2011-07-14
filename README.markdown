@@ -39,7 +39,7 @@ For the all the commands below, the mapleader is assumed to be `,`. If it is
 ### Invoking the plugin
 
 * `,n` navigate the classes and modules in your project
-* `,nn` navigate the methods in the current file
+* `,,n` navigate the methods in the current file
 
 To change these keymappings, edit the two lines at the end of
 `~/.vim/plugin/rb_nav.vim`.

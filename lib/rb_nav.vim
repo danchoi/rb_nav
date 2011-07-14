@@ -159,4 +159,4 @@ endfunc
 
 
 nnoremap <Leader>n :call <SID>autocomplete_classes()<cr>
-nnoremap <Leader>nn :call <SID>autocomplete_methods()<cr>
+nnoremap <Leader><Leader>n :call <SID>autocomplete_methods()<cr>
